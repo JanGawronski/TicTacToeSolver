@@ -13,6 +13,7 @@ const int width = 3;
 const int height = 3;
 int winLength = 3;
 int secondsToThink = 1;
+time_t start, end;
 int bestMoveY = 0;
 int bestMoveX = 0;
 int squaresLeft = width * height;
@@ -115,6 +116,10 @@ int alphaBeta(int alpha, int beta, int depthLeft, bool firstIteration, int turn)
     if (depthLeft == 0)
         return 0;
 
+    time(&end);
+    if (double(end - start) > secondsToThink)
+        return 0;
+
     int bestValue = -2;
     int x = 0;
     int y = 0;
@@ -207,9 +212,9 @@ int main(int argc, char **argv)
 
                 QCoreApplication::processEvents();
 
-                time_t start, end; 
                 time(&start);
                 time(&end);
+                
                 int depth = 1;
                 while (double(end - start) < secondsToThink && squaresLeft >= depth) {
                     int evaluation = alphaBeta(-2, 2, depth, true, -1);
