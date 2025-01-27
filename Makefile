@@ -5,7 +5,7 @@ CXX = g++
 CXXFLAGS = -fPIC -Ofast $(shell pkg-config --cflags --libs Qt6Widgets)
 
 # Source files
-SRC = gui.cpp
+SRC = gui.cpp solver.h
 
 # Output executable
 OUT = TicTacToe
