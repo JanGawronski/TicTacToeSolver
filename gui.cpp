@@ -72,7 +72,10 @@ int main(int argc, char **argv)
                 int depth = 1;
                 std::tuple<int, int, int> bestMove = solver.getBestMove(-1, depth, end);
                 while (end > time(nullptr) && depth <= solver.squaresLeft()) {
-                    bestMove = solver.getBestMove(-1, depth, end);
+                    std::tuple<int, int, int> potentialMove = solver.getBestMove(-1, depth, end);
+                    if (end <= time(nullptr))
+                        break;
+                    bestMove = potentialMove;
                     dynamicLabel->setText(QString("Depth: %1 \t Evaluation: %2").arg(depth - 1).arg(-std::get<2>(bestMove)));
                     QCoreApplication::processEvents();
                     depth++;
