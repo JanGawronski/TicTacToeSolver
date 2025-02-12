@@ -2,7 +2,7 @@
 CXX = g++
 
 # Compiler flags
-CXXFLAGS = -fPIC -Ofast $(shell pkg-config --cflags --libs Qt6Widgets)
+CXXFLAGS = -std=c++23 -fPIC -Ofast $(shell pkg-config --cflags --libs Qt6Widgets)
 
 # Source files
 SRC = gui.cpp solver.h
